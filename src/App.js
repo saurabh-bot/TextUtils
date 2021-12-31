@@ -14,7 +14,7 @@ function App() {
       message,
       type
     })
-    setTimeout(() => {setAlert(null)}, 1500);
+    setTimeout(() => {setAlert(null)}, 2000);
   }
 
   const dark = '#011838';
