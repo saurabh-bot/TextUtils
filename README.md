@@ -1,6 +1,6 @@
-### `TextUtils app`
+## `TextUtils app`
 
-# Features
+### Features
 - Convert the text to uppercase
 - Convert the text to lowercase
 - Get the count of words
