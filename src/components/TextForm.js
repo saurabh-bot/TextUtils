@@ -33,9 +33,7 @@ export default function TextForm(props) {
     }
 
     const countWord = (word) => {
-        let len = 0;
-        if(word.length === 0 || word.charAt(word.length-1) === ' ') len = -1;
-        return word.split(' ').length + len;
+        return word.split(/\s+/).filter((element) => {return element.length!==0}).length
     }
     const [text, setText] = useState('');
     return (
@@ -47,11 +45,11 @@ export default function TextForm(props) {
                 <textarea className="form-control" id="myBox" placeHolder="Enter text here" value={text} onChange={handleChange} rows="8" style={{backgroundColor:props.mode === 'light'?light:'#013354',
         color: props.mode==='light'?dark:light}}></textarea>
             </div>
-            <button className="btn btn-primary mx-2 my-2" onClick={handleUpClick}>Convert to Uppercase</button>
-            <button className="btn btn-primary mx-2 my-2" onClick={handleLowClick}>Convert to Lowercase</button>
-            <button className="btn btn-primary mx-2 my-2" onClick={handleClrClick}>Clear Text</button>
-            <button className="btn btn-primary mx-2 my-2" onClick={handleCopyClick}>Copy Text</button>
-            <button className="btn btn-primary mx-2 my-2" onClick={handleRemoveExtraSpaceClick}>Remove Extra Space</button>
+            <button disabled={text.length===0} className="btn btn-primary mx-2 my-2" onClick={handleUpClick}>Convert to Uppercase</button>
+            <button disabled={text.length===0} className="btn btn-primary mx-2 my-2" onClick={handleLowClick}>Convert to Lowercase</button>
+            <button disabled={text.length===0} className="btn btn-primary mx-2 my-2" onClick={handleClrClick}>Clear Text</button>
+            <button disabled={text.length===0} className="btn btn-primary mx-2 my-2" onClick={handleCopyClick}>Copy Text</button>
+            <button disabled={text.length===0} className="btn btn-primary mx-2 my-2" onClick={handleRemoveExtraSpaceClick}>Remove Extra Space</button>
         </div>
         <div className="container my-3" style={{backgroundColor:props.mode === 'light'?light:dark,
         color: props.mode==='light'?dark:light}}>
@@ -59,7 +57,7 @@ export default function TextForm(props) {
             <p>{countWord(text)} words and {text.length} characters</p>
             <p>{0.008 * countWord(text)} minutes to read</p>
             <h3>Preview</h3>
-            <p>{text.length>0?text:'Enter the text in the above text box to preview'}</p>
+            <p>{text.length>0?text:'Nothing to preview'}</p>
         </div>
         </>
     )
